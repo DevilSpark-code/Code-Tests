@@ -11,11 +11,12 @@ Es por eso que la nueva versión consiste en un *ripoff* de las librerías de `T
 ### Información adicional
 Para más información del modelo.
 >Puedes consultar el siguiente [Enlace con información esencial](https://docs.python.org/3/library/turtle.html#:~:text=The%20turtle%20module%20is%20an%20100%25%20compatible%20with%20it.)
+---
 Para más información del código fuente original para este proyeto: 
 >Puedes consultar el siguiente [Enlace con la referencia original](https://gist.github.com/sanchitgangwar/2158089)
 
 ### Integrantes de equipo. 
 Participantes
--Rodríguez Mandujano Jose Manuel 
--Gutiérrez Alvarado Sebastian
--Cortés Bañuelos Sínaí
+- Rodríguez Mandujano Jose Manuel 
+- Gutiérrez Alvarado Sebastian
+- Cortés Bañuelos Sínaí
