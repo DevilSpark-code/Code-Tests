@@ -1,4 +1,7 @@
 # Programa Snake (Viborita)(Python version)
+## Recomendación!
+Se recomienda tener `Python3` instalado en tu dispositivo ya que esta versión de Snake __Funciona con ventanas__ y estas NO son compatibles con compiladores web (A no ser que se implementen con JavaScript, lo cual no es el caso en este programa.)
+
 
 ### Descripciones:
 Este código fue hecho con las librerías de Python `Turtle` para poder generar medios que permitan una manipulación más sencilla de la interfaz principal desde la raíz de la programacón hasta el modelo final. 
@@ -17,6 +20,6 @@ Para más información del código fuente original para este proyeto:
 
 ### Integrantes de equipo. 
 Participantes
-- Rodríguez Mandujano Jose Manuel 
+- Cortés Bañuelos Sinaí
 - Gutiérrez Alvarado Sebastian
-- Cortés Bañuelos Sínaí
+- Pacheco Tavira Mauricio
