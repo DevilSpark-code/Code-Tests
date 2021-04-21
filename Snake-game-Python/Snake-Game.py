@@ -1,89 +1,152 @@
-#Juego sencillo de viborita basado en Python con sistema de interacción en consola. 
-#Importacion de librerias
-import curses 
-from random import randint
+#Creación de un juego de la viborita "Snake" desarrollado en Python. 
+#Importacion de librerías necesarias para trabajar con el proyecto en cuestion 
+import turtle
+import time
+import random
+#Tiempo de delay de respuesta
+delay = 0.1
+#Puntuaciones del juego 
+Puntuacion = 0
+Puntuacion_alta = 0
+#Set-Up de la pantalla, definiciones, textos y colores esenciales. 
+#Simplificacion de métodos usando vent como variable de acorte. 
+vent = turtle.Screen()
+vent.title("Juego de la viborita LS")
+vent.bgcolor('orange')
+vent.setup(width=600, height=600)
+vent.tracer(0)
 
-#cONSTANTES DEL programa 
+#Cabeza de la viborita
+cabeza = turtle.Turtle()
+cabeza.speed(0)
+cabeza.shape("square")
+cabeza.color("black")
+cabeza.penup()
+cabeza.goto(0,0)
+cabeza.direction = "stop"
+#Comida viborita
+comida= turtle.Turtle()
+comida.speed(0)
+comida.shape("circle")
+comida.color("red")
+comida.penup()
+comida.goto(0,100)
 
-ventanaDOW_WIDTH = 60  # Numero de columnas en la ventanaana
-ventanaDOW_HEIGHT = 20 # Numero de filas en la ventanaana
-#Estos valores pueden ser modificados para variar la experiencia de juego.
-'''
-Numero de bloques en las ventanaanas por línea = ventanaDOW_WIDTH -2. 
-El indice del bloque X varia de 1 a ventanaDOW_WIDTH -2.
-Numero de bloques en las ventanaanas por columna = ventanaDOW_HEIGHT -2. 
-El indice del bloque y varia de 1 a ventanaDOW_HEIGHT -2.
-'''
+segments = []
 
-# Set-up de la ventanaana para interacción
-curses.initscr()
-ventana = curses.newventana(ventanaDOW_HEIGHT, ventanaDOW_WIDTH, 0, 0) # filas, columnas
-ventana.keypad(1)
-curses.noecho()
-curses.curs_set(0)
-ventana.border(0)
-ventana.nodelay(1) # -1
+#Tablas de puntuacion
+punt = turtle.Turtle()
+punt.speed(0)
+punt.shape("square")
+punt.color("white")
+punt.penup()
+punt.hideturtle()
+punt.goto(0,260)
+punt.write("Puntuacion: 0  Puntuacion alta: 0", align = "center", font=("ds-digital", 24, "normal"))
 
-# Arreglos para la seripiente y la comida.
-viborita = [(4, 4), (4, 3), (4, 2)]
-comida = (6, 6)
+#Funciones de dirección para la tortuga. 
+def ir_arriba():
+    if cabeza.direction != "down":
+        cabeza.direction = "up"
+def ir_abajo():
+    if cabeza.direction != "up":
+        cabeza.direction = "down"
+def ir_izq():
+    if cabeza.direction != "right":
+        cabeza.direction = "left"
+def ir_der():
+    if cabeza.direction != "left":
+        cabeza.direction = "right"
+def move():
+    if cabeza.direction == "up":
+        y = cabeza.ycor()
+        cabeza.sety(y+20)
+    if cabeza.direction == "down":
+        y = cabeza.ycor()
+        cabeza.sety(y-20)
+    if cabeza.direction == "left":
+        x = cabeza.xcor()
+        cabeza.setx(x-20)
+    if cabeza.direction == "right":
+        x = cabeza.xcor()
+        cabeza.setx(x+20)
 
-ventana.addch(comida[0], comida[1], '#')
-# Logica de la jugabilidad.
-puntuacion = 0
+#Atajos de teclado como macros.
+vent.listen()
+vent.onkeypress(ir_arriba, "w")
+vent.onkeypress(ir_abajo, "s")
+vent.onkeypress(ir_izq, "a")
+vent.onkeypress(ir_der, "d")
 
-ESC = 27
-key = curses.KEY_RIGHT
+#Loop principal de acción de la viborita
+while True:
+    vent.update()
+    #Revisar por colisiones de la cabeza con el borde de la pantalla.
+    if cabeza.xcor()>290 or cabeza.xcor()<-290 or cabeza.ycor()>290 or cabeza.ycor()<-290:
+        time.sleep(1)
+        cabeza.goto(0,0)
+        cabeza.direction = "stop"
+        #Esconder los segmentos del cuerpo.
+        for segment in segments:
+            segment.goto(1000,1000) #Fuera de rango.
+        #Limpiar los segmentos. 
+        segments.clear()
+        #Restablecer puntcuacion
+        Puntuacion = 0
+        #reset delay
+        delay = 0.1
+        punt.clear()
+        punt.write("Puntuacion: {}  Puntuacion alta : {}".format(Puntuacion, Puntuacion_alta), align="center", font=("ds-digital", 24, "normal"))
 
-while key != ESC:
-    ventana.addstr(0, 2, 'puntuacion ' + str(puntuacion) + ' ')
-    ventana.timeout(150 - (len(viborita)) // 5 + len(viborita)//10 % 120) # Incremento de velocidad. 
+    #Revisar por colisión con el elemento principal "La comida"
+    if cabeza.distance(comida) <20:
+        # Mover la comida a un lugar aleatorio dependiendo de la posicion de la tortugita 
+        x = random.randint(-290,290)
+        y = random.randint(-290,290)
+        comida.goto(x,y)
 
-    tecla_anterior = key
-    eventana = ventana.getch()
-    key = eventana if eventana != -1 else tecla_anterior
+        #Añadir nuevos segmentos a la cabeza
+        nueva_cabeza = turtle.Turtle()
+        nueva_cabeza.speed(0)
+        nueva_cabeza.shape("square")
+        nueva_cabeza.color("black")
+        nueva_cabeza.penup()
+        segments.append(nueva_cabeza)
+        
+        #Acortar el Delay (velocidad)
+        delay -= 0.001
+        #incrementa la puntuacion
+        Puntuacion += 10
+        if Puntuacion > Puntuacion_alta:
+            Puntuacion_alta = Puntuacion
+        punt.clear()
+        punt.write("Puntuacion: {}  Puntuacion alta: {}".format(Puntuacion,Puntuacion_alta), align="center", font=("ds-digital", 24, "normal")) 
 
-    if key not in [curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN, ESC]:
-        key = tecla_anterior
-
-    # Calcular las siguientes coordenadas.
-    y = viborita[0][0]
-    x = viborita[0][1]
-    if key == curses.KEY_DOWN:
-        y += 1
-    if key == curses.KEY_UP:
-        y -= 1
-    if key == curses.KEY_LEFT:
-        x -= 1
-    if key == curses.KEY_RIGHT:
-        x += 1
-
-    viborita.insert(0, (y, x)) #Adjuntar O(n)
-
-    # Revisar si la vivorita ha tocado el borde de la pantalla. 
-    if y == 0: break
-    if y == ventanaDOW_HEIGHT-1: break
-    if x == 0: break
-    if x == ventanaDOW_WIDTH -1: break
-
-    # Si la viborita camina sobre si misma (se come)
-    if viborita[0] in viborita[1:]: break
-
-    if viborita[0] == comida:
-        # Se come la comida.
-        puntuacion += 1
-        comida = ()
-        while comida == ():
-            comida = (randint(1,ventanaDOW_HEIGHT-2), randint(1,ventanaDOW_WIDTH -2))
-            if comida in viborita:
-                comida = ()
-        ventana.addch(comida[0], comida[1], '#')
-    else:
-        # move viborita
-        last = viborita.pop()
-        ventana.addch(last[0], last[1], ' ')
-
-    ventana.addch(viborita[0][0], viborita[0][1], '*')
-
-curses.endventana()
-print(f"Final puntuacion = {puntuacion}")
+    #Mueve los segmentos en orden inverso
+    for index in range(len(segments)-1,0,-1):
+        x = segments[index-1].xcor()
+        y = segments[index-1].ycor()
+        segments[index].goto(x,y)
+    #Mueve el segmento cero a la cabeza. 
+    if len(segments)>0:
+        x = cabeza.xcor()
+        y = cabeza.ycor()
+        segments[0].goto(x,y)
+    move()
+    #Revisar por colisiones con el cuerpo. 
+    for segment in segments:
+        if segment.distance(cabeza)<20:
+            time.sleep(1)
+            cabeza.goto(0,0)
+            cabeza.direction = "stop"
+            #Esconder los segmentos del cuerpo.
+            for segment in segments:
+                segment.goto(1000,1000)
+            segments.clear()
+            Puntuacion = 0
+            delay = 0.1
+            #Actualizar la puntuación.
+            punt.clear()
+            punt.write("Puntuacion: {}  High Puntuacion: {}".format(Puntuacion,Puntuacion_alta), align="center", font=("ds-digital", 24, "normal"))
+    time.sleep(delay)
+vent.mainloop()   
