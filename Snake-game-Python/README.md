@@ -4,7 +4,7 @@ Se recomienda tener `Python3` instalado en tu dispositivo ya que esta versión d
 
 
 ### Descripciones:
-Este código fue hecho con las librerías de Python `Turtle` para poder generar medios que permitan una manipulación más sencilla de la interfaz principal desde la raíz de la programacón hasta el modelo final. 
+Este código fue hecho con las librerías de Python `Turtle` para poder generar medios que permitan una manipulación más sencilla de la interfaz principal desde la raíz de la programacón hasta el modelo final. :D
 
 ### Cambios realizados en el modelo
 Este modelo está basado en una variante del mismo lenguaje de programación que implementa la biblioteca `curses`, debido a que dicha biblioteca **ha sido implementada para dispositivos con S.O base Linux**, la estrategia prncipal consiste en *cambiar el programa para adaptarlo a las librerías de windows.*
