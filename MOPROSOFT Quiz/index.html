@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario Multiplle</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente para los icionos-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <!-- Boton para comenzar el quiz -->
+    <div class="start_btn" ><button>Gestion Negocios</button></div>
+    <div class="start_btn2"><button>Gestion Procesos</button></div>
+    <div class="start_btn3"><button>Cartera Proyectos</button></div>
+    <div class="start_btn4"><button>Gestion Recursos</button></div>
+    <div class="start_btn5"><button>Gestion R.H</button></div>
+    <div class="start_btn6" ><button>Gestion Bienes Servicios</button></div>
+    <div class="start_btn7"><button>Gestion del Conocimiento</button></div>
+    <div class="start_btn8"><button>Administracion Proyecto</button></div>
+    <div class="start_btn9"><button>Desarrollo Software</button></div>
+    <!-- Caja de Informacion-->
+    <div class="info_box">
+        <div class="info-title"><span>Algunas reglas de este cuestionario</span></div>
+        <div class="info-list">
+            <div class="info">1. Solamente cuentas con <span>15 segundos</span> para contestar cada pregunta.</div>
+            <div class="info">2. Una vez que des una respuesta, el resultado no puede ser alterado.</div>
+            <div class="info">3. YNo puedes seleccionar otra pregunta una vez se termina el tiempo.</div>
+            <div class="info">4. No puedes salir del cuestionario una vez comienzas.</div>
+            <div class="info">5. La puntuación se obtiene con base en tus respuestas positivas.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Salir </button>
+            <button class="restart">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Caja para el cuestionario -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">Aplicacion de cuestionario</div>
+            <div class="timer">
+                <div class="time_left_txt">Tiempo Restante</div>
+                <div class="timer_sec">15</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">
+                <!-- Se insertan todas las preguntas desde JavaScript -->
+            </div>
+            <div class="option_list">
+                <!-- Se insertan todas las opciones desde JavaScript -->
+            </div>
+        </section>
+
+        <!-- Pie de Pagina para el cuestionario -->
+        <footer>
+            <div class="total_que">
+                <!-- Se insertan todas las preguntas desde JavaScript -->
+            </div>
+            <button class="next_btn">Siguiente</button>
+        </footer>
+    </div>
+
+    <!-- Caja de Resultados -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">Haz completado el cuestionario</div>
+        <div class="score_text">
+            <!-- Acá se insertan los resultados desde JavaScript -->
+        </div>
+        <div class="buttons">
+            <button class="restart">Repetir cuestionario</button>
+            <button class="quit">Hacer otro cuestionario</button>
+        </div>
+    </div>
+
+    <!-- Dentro de este documento JavaScript se encuentran unicamente las preguntas y respuestas -->
+    <script src="js/questions.js"></script>
+    <!-- Dentro de este docuemnto JavaScript se encuentran las rutinas de configuracion -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
+</html>
