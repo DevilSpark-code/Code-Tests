@@ -1,4 +1,4 @@
-# Code-Tests
+# Mini Code-Projects
 Code Tests lo defino como un *Vertedero con cosas interesantes.*
 
 Es el sitio donde experimentar con conceptos de programación se vuelve de fácil acceso. 
