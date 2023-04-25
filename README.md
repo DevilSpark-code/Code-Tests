@@ -1,10 +1,8 @@
 # Mini Code-Projects
-Code Tests lo defino como un *Vertedero con cosas interesantes.*
+Code Tests I define it as a *Dump with interesting things.
 
-Es el sitio donde experimentar con conceptos de programación se vuelve de fácil acceso. 
-Diferentes temas, lenguajes, pero en todos intentaré tener la mayor cantidad de información posible acerca de ellos. 
+It is the place where experimenting with programming concepts becomes easily accessible. 
+Different topics, languages, but in all of them I will try to have as much information as possible about them. 
 
-Además me gusta mucho la idea que viene en palabas de `Martin Fowler`:
->Cualquier idiota puede escribir código que una computadora pueda entender. Pero solo un buen programador puede escribir código que los humanos puedan entender. 
-
-
+Also I like very much the idea that comes in words of `Martin Fowler`:
+>Any idiot can write code that a computer can understand. But only a good programmer can write code that humans can understand. 
